@@ -2,11 +2,11 @@
 
 const fs = require('fs');
 const path = require('path');
-const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'local';
-const config = require('../config/config.json')[env];
+const config = require('../config/config.js')[env];
 const db = {};
 
 let sequelize;
@@ -45,5 +45,7 @@ sequelize
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+db.user = require("./user")(sequelize, DataTypes);
 
 module.exports = db;

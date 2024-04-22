@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();             //without this line .env is not loaded in your app.js and port and host become undefined
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const allRoutes = require('./routes/all.route');
+app.use('/', allRoutes);
 
 const port = process.env.CMS_PORT;
 const host = process.env.CMS_HOST;
