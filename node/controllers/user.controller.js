@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const db = require("../models");
 const { resDocCreated, resErrorOccured, resServerError, resFound, resAlreadyExists, resNotFound } = require("../utils/response");
-let secretKey = '1A2b3C';
+const config = require("../config/config");
+let secretKey = config.JWT_SECRET;
 
 const signup = async (req, res) => {
     try {
@@ -31,7 +32,7 @@ const login = async (req, res) => {
         if (!check) return resNotFound(res, "User Not Found, Sign up first!");
         let user = await bcrypt.compare(password, check.password);
         if (!user) return resErrorOccured(res, "Incorrect Password!");
-        const token = jwt.sign({ userId: check.id, firstName: check.firstName, lastName: check.lastName, email: check.email }, secretKey, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: check.id, firstName: check.firstName, lastName: check.lastName, email: check.email, role: check.role }, secretKey, { expiresIn: '1h' });
         return resDocCreated(res, token);
     } catch (error) {
         return resServerError(res, error);
@@ -64,8 +65,8 @@ const getAllUsers = async (req, res) => {
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'youremail@gmail.com',
-        pass: 'yourpassword'
+        user: 'it.1902710@gmail.com',
+        pass: 'Johncena@1560'
     }
 });
 
@@ -81,7 +82,7 @@ const forgetPassword = async (req, res) => {
         } else return resNotFound(res, "Please provide the Email Address");
         if (!check) return resNotFound(res, "User Not Found!");
         var mailOptions = {
-            from: 'youremail@gmail.com',
+            from: 'it.1902710@gmail.com',
             to: check.email,
             subject: 'Password By Cafe Management Portal',
             html: '<p><b>Your Login Details For Cafe Management System</b><br><b>Email: </b>' + check.email + '<br><b>Password: </b>' + check.password + '<br><a href="http://localhost:4200/">Click Here To Login!</a></p>'
@@ -103,5 +104,5 @@ module.exports = {
     addUserByAdmin,
     getAllUsers,
     login,
-    forgetPassword
+    forgetPassword,
 }

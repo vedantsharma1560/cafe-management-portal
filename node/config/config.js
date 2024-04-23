@@ -39,4 +39,5 @@ module.exports = {
             idle: 10000,
         },
     },
+    JWT_SECRET: process.env.JWT_SECRET ? process.env.JWT_SECRET : config?.JWT_SECRET
 };
