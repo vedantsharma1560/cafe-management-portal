@@ -48,5 +48,16 @@ db.Sequelize = Sequelize;
 
 db.user = require("./user")(sequelize, DataTypes);
 db.category = require("./category")(sequelize, DataTypes);
+db.product = require("./products")(sequelize, DataTypes);
+db.bill = require("./bill.js")(sequelize, DataTypes);
+
+db.category.hasMany(db.product, { foreignKey: 'categoryId', as: 'products' });
+db.product.belongsTo(db.category, { foreignKey: 'categoryId', as: 'category' });
+
+
+db.bill.hasMany(db.product, { foreignKey: 'billId', as: 'products' });
+db.product.belongsTo(db.bill, { foreignKey: 'billId', as: 'bill' });
+
+db.bill.belongsTo(db.user, { foreignKey: 'createdBy', as: 'billCreatedBy' });
 
 module.exports = db;
