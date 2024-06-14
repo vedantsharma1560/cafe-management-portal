@@ -1,0 +1,66 @@
+<div class="section" style="background-color: rgba(37, 35, 35, 0.895);">
+  <div class="container">
+    <div class="row full-height justify-content-center">
+      <div class="col-12 text-center align-self-center py-5">
+        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+          <h6 class="mb-0 pb-3" style="color: #ffeba7;"><span>Log In </span><span>Sign Up</span></h6>
+          <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+          <label for="reg-log"></label>
+          <div class="card-3d-wrap mx-auto">
+            <div class="card-3d-wrapper">
+              <div class="card-front">
+                <div class="center-wrap">
+                  <div class="section text-center">
+                    <h4 class="mb-4 pb-3" style="color: #ffeba7;">Log In</h4>
+                    <form [formGroup]="loginForm">
+                      <div class="form-group">
+                        <input type="email" class="form-style" placeholder="Email" formControlName="email">
+                        <i class="input-icon uil uil-at"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Password" formControlName="password">
+                        <i class="input-icon uil uil-lock-alt"></i>
+                      </div>
+                      <a class="btn mt-4" (click)="login()">Login</a>
+                      <p class="link mt-4" (click)="toggler()">New to CMS? click here to Signup.</p>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="card-back">
+                <div class="center-wrap">
+                  <div class="section text-center">
+                    <h4 class="mb-3 pb-3" style="color: #ffeba7;">Sign Up</h4>
+                    <form [formGroup]="signupForm">
+                      <div class="form-group">
+                        <input type="text" class="form-style" placeholder="First Name" formControlName="firstName">
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="text" class="form-style" placeholder="Last Name" formControlName="lastName">
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="tel" class="form-style" placeholder="Phone Number" formControlName="contactNumber">
+                        <i class="input-icon uil uil-phone"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="email" class="form-style" placeholder="Email" formControlName="email">
+                        <i class="input-icon uil uil-at"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Password" formControlName="password">
+                        <i class="input-icon uil uil-lock-alt"></i>
+                      </div>
+                    </form>
+                    <a class="btn mt-4" (click)="signup()">Signup</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@ const { verifyToken } = require("../middlewares/verifyToken");
 const { isAdmin } = require("../middlewares/isAdmin");
 
 routes.post('/login', userController.login);
-routes.post('/signup', verifyToken, userController.signup);
+routes.post('/signup', userController.signup);
 routes.get('/getAllUsers', verifyToken, isAdmin, userController.getAllUsers);
 routes.post('/forgotPassword', verifyToken, userController.forgetPassword);
 

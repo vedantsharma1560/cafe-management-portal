@@ -1,0 +1,8 @@
+<div class="side-panel b">
+  <ul>
+    <ng-container *ngFor="let p of pages">
+      <li (click)="navigateToPages(p?.route)"><a><span class="menu-item">{{p?.name}}</span></a></li>
+    </ng-container>
+  </ul>
+</div>
+<router-outlet></router-outlet>

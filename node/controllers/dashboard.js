@@ -5,7 +5,7 @@ const dashboardDetails = async(req, res) => {
     try {
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const limit = 100;
-        let catdoc = await db.category.findAndCountAll({
+        let catDoc = await db.category.findAll({
             distinct: true,
             offset: (page - 1) * limit,
             limit: limit,
@@ -22,7 +22,7 @@ const dashboardDetails = async(req, res) => {
                 }
             ]
         });
-        return resFound(res, catdoc);  
+        return resFound(res, catDoc);  
     } catch (error) {
         return resServerError(res, error);
     }
