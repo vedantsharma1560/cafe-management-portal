@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
 import { TokenService } from 'src/app/services/token-storage/token.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     },
     {
       "name": "Food",
-      "route": "/login",
+      "route": "/food",
     },
     {
       "name": "Beverages",
@@ -36,12 +36,15 @@ export class NavbarComponent implements OnInit {
       "route": "/app-settings",
     }
   ];
+  countdown: number = 0;
 
-  constructor(private token: TokenService, private route: Router) { }
+  constructor(private token: TokenService, private login: LoginService) { }
 
   ngOnInit(): void {
     this.userData = this.token.getDecodedToken();
     this.getMenuByRole();
+    this.login.startLogoutTimer();
+    this.login.countdown.subscribe((count: any ) => this.countdown = count); // Update the countdown
   }
 
   getMenuByRole() {
@@ -57,8 +60,14 @@ export class NavbarComponent implements OnInit {
     return this.pages.filter(page => page.name !== pageName);
   };
 
-  navigateToPages(pageRoute: any) {
-    this.route.navigate([pageRoute]);
+  logout() {
+    this.login.logout();
+  };
+
+  getFormattedTime(): string {
+    const minutes = Math.floor(this.countdown / 60);
+    const seconds = this.countdown % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
 }

@@ -1,19 +1,11 @@
-<div class="nav">
-  <input type="checkbox" id="nav-check">
-  <div class="nav-header">
-  </div>
-  <div class="nav-btn">
-    <label for="nav-check">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-  </div>
-  
+<div class="nav" style="display: flex; justify-content: space-between;">
   <div class="nav-links">
     <ng-container *ngFor="let p of pages">
       <a [routerLink]="[p?.route]">{{p?.name}}</a>
     </ng-container>
+    <span style="color: burlywood; margin-left: 320px;">Auto Logout in : {{ getFormattedTime() }}</span>
+    <img src="assets/img/logout (1).png" style="height: 20px; width: 20px; cursor: pointer; margin-left: 20px;"
+      (click)="logout()">
   </div>
 </div>
 <router-outlet></router-outlet>

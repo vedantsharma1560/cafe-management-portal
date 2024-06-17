@@ -1,0 +1,55 @@
+<div class="center">
+  <button class="button-30" data-bs-toggle="modal" data-bs-target="#categoryModal" (click)="clickAdd()">Add Category</button>
+</div>
+
+<div class="form-outline">
+  <input type="search" [(ngModel)]="searchKey" placeholder="Search Category" aria-label="Search" class="search-bar"/>
+</div>
+
+<div>
+  <table class="table-fill">
+    <thead>
+      <tr>
+        <th class="text-left">Name</th>
+        <th class="text-left">Created At</th>
+        <th class="text-left">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-hover">
+      <ng-container *ngFor="let cat of categories | search: searchKey">
+        <tr>
+          <td class="text-left">{{cat?.name}}</td>
+          <td class="text-left">{{cat?.createdAt | date }}</td>
+          <td>
+              <img src="assets/img/pencil.png" style="height: 20px; width: 20px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#categoryModal" (click)="onEdit(cat)">
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<!--Category Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryModalLabel" *ngIf="showAdd" style="color: black;">Add Category</h5>
+        <h5 class="modal-title" id="categoryModalLabel" *ngIf="showEdit" style="color: black;">Edit Category</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="catForm">
+          <div>
+            <label class="form-label" style="color: black;">Name</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+        <button class="btn btn-dark" *ngIf="showAdd" (click)="addCategory()">Add</button>
+        <button class="btn btn-dark" *ngIf="showEdit" (click)="updateCategory()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
