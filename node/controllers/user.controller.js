@@ -41,13 +41,8 @@ const login = async (req, res) => {
 
 const addUserByAdmin = async (req, res) => {
     try {
-        let { role } = req.body;
-        if (role === 'Admin') {
-            let doc = await db.user.create(req.body);
-            return resDocCreated(res, doc);
-        } else {
-            return resErrorOccured(res, "You are not an admin to create user!");
-        }
+        let doc = await db.user.create(req.body);
+        return resDocCreated(res, doc);
     } catch (error) {
         return resServerError(res, error);
     }
@@ -65,8 +60,8 @@ const getAllUsers = async (req, res) => {
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'it.1902710@gmail.com',
-        pass: 'Johncena@1560'
+        user: 'example@gmail.com',
+        pass: 'example'
     }
 });
 
@@ -105,4 +100,4 @@ module.exports = {
     getAllUsers,
     login,
     forgetPassword,
-}
+};

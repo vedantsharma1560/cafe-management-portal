@@ -1,7 +1,11 @@
 <!-- Dashboard Card -->
 <section id="advertisers" class="advertisers-service-sec pt-5 pb-5">
-  <div class="form-outline">
-    <input type="search" [(ngModel)]="searchText" placeholder="Search Here" aria-label="Search" class="search-bar"/>
+  <div style="display: flex; justify-content: flex-end; margin-right: 15px;">
+  </div>
+  <div class="form-outline" style="display: flex;">
+    <input type="search" [(ngModel)]="searchText" placeholder="Search Here" aria-label="Search" class="search-bar" />
+    <img src="assets/img/night-mode.png" style="height: 20px; width: 20px; margin-left: 520px; cursor: pointer;"
+      (click)="onToggleMode()">
   </div>
   <div class="container">
     <div class="row">
@@ -13,7 +17,8 @@
         <p class="sec-icon"><i class="fa-solid fa-gear"></i></p>
       </div>
     </div>
-    <div class="row mt-5 mt-md-4 row-cols-1 row-cols-sm-1 row-cols-md-3 justify-content-center" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+    <div class="row mt-5 mt-md-4 row-cols-1 row-cols-sm-1 row-cols-md-3 justify-content-center" infiniteScroll
+      [infiniteScrollDistance]="2" (scrolled)="onScroll()">
       <ng-container *ngFor="let dash of dashboardData | search: searchText">
         <div class="col">
           <div class="service-card">
@@ -91,7 +96,4 @@
     </div>
   </div>
 </section>
-<button (click)="onToggleMode()" class="btn btn-dark">
-  Dark Mode
-</button>
 <!-- Dashboard Card End -->

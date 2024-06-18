@@ -1,0 +1,20 @@
+<form [formGroup]="userForm">
+  <div>
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-control" formControlName="firstName">
+  </div>
+  <div>
+    <label class="form-label">Last Name</label>
+    <input type="text" class="form-control" formControlName="lastName">
+  </div>
+  <div>
+    <label class="form-label">Email</label>
+    <input type="text" class="form-control" formControlName="email">
+  </div>
+</form>
+<form [formGroup]="profileForm">
+    <input type="file" name="myfile" (change)="uploadFile($event)" formControlName="file" style="cursor: pointer;">
+    <button (click)="uploadProfilePic()">
+      Upload
+    </button>
+</form>

@@ -11,7 +11,7 @@ const isAdmin = (req, res, next) => {
     jwt.verify(token, secretKey, async(err, user) => {
         if(err) return resErrorOccured(res, err);
         let userPayload = jwt.decode(token);
-        if(userPayload.role === 'Admin') next();
+        if(userPayload.role === 'Admin' || userPayload.role === 'admin') next();
         else return res.status(401).json({ statusCode: 401, statusMessage: 'You are not an admin!' });
     });
 };

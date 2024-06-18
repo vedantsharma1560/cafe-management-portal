@@ -12,7 +12,10 @@ const verifyToken = (req, res, next) => {
         if(err) return resErrorOccured(res, err);
         let userPayload = jwt.decode(token);
         let userData = await db.user.findByPk(userPayload.userId);
-        if(userPayload.userId === userData.id) next();
+        if(userPayload.userId === userData.id) {
+            req.userPayload = userPayload;
+            next();
+        }
         else return res.status(401).json({ statusCode: 401, statusMessage: "You don't have access to this API!", error: "invalid-access" });
     });
 };
